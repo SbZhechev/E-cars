@@ -1,0 +1,59 @@
+﻿@model IEnumerable<E_cars.Models.Car>
+
+@{
+    ViewData["Title"] = "Каталог";
+}
+
+<div>
+    <main>
+        <header class="d-flex align-items-center mb-5">
+            <h1>Каталог</h1>
+            <div class="dropdown ml-auto">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Избери марка
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Audi</a>
+                    <a class="dropdown-item" href="#">BMW</a>
+                    <a class="dropdown-item" href="#">Lada</a>
+                    <a class="dropdown-item" href="#">Mercedes-Benz</a>
+                </div>
+            </div>
+            <div class="dropdown ml-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Избери модел
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">RS8</a>
+                    <a class="dropdown-item" href="#">X7</a>
+                    <a class="dropdown-item" href="#">Niva</a>
+                    <a class="dropdown-item" href="#">CLS 500</a>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            @foreach (var car in Model)
+            {
+                <div class="card d-inline-block m-2" style="width: 18rem;">
+                    <img class="card-img-top" src="@car.Picture" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Производител: @car.Brand</h5>
+                        <p class="card-text">Модел: @car.Model</p>
+                        <p class="card-text">Година на производство: @car.Production_Year</p>
+                        <p class="card-text">Километраж: @car.Mileage</p>
+                        <p class="card-text">Цена: @car.Price лева</p>
+                        <a href="#" class="btn btn-primary buyButton">Купи</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </main>
+</div>
+
+<style>
+    .buyButton {
+        display: block;
+        margin: 0 auto;
+        width: 70%;
+    }
+</style>

@@ -36,3 +36,4 @@ C:\C#\E-cars\E-cars\obj\Debug\netcoreapp3.1\E-cars.pdb
 C:\C#\E-cars\E-cars\obj\Debug\netcoreapp3.1\E-cars.genruntimeconfig.cache
 C:\C#\E-cars\E-cars\obj\Debug\netcoreapp3.1\E-cars.csproj.CopyComplete
 C:\C#\E-cars\E-cars\obj\Debug\netcoreapp3.1\Razor\Views\Catalogue\Index.cshtml.g.cs
+C:\C#\E-Cars\E-cars\obj\Debug\netcoreapp3.1\Razor\Views\Catalogue\Brand.cshtml.g.cs

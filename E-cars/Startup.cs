@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using E_cars.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MySqlConnector;
 
 namespace E_cars
 {
@@ -25,6 +26,7 @@ namespace E_cars
         {
             services.AddControllersWithViews();
             services.AddMvc().AddControllersAsServices();
+            services.AddTransient<MySqlConnection>(_ => new MySqlConnection("server=localhost;user=root;password=root;database=e_cars"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

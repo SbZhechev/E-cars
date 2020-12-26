@@ -1,31 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\C#\\E-Cars\\E-cars\\E-cars.csproj": {}
+    "/Users/skasurov/IdeaProjects/E-cars/E-cars/E-cars.csproj": {}
   },
   "projects": {
-    "C:\\C#\\E-Cars\\E-cars\\E-cars.csproj": {
+    "/Users/skasurov/IdeaProjects/E-cars/E-cars/E-cars.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\C#\\E-Cars\\E-cars\\E-cars.csproj",
+        "projectUniqueName": "/Users/skasurov/IdeaProjects/E-cars/E-cars/E-cars.csproj",
         "projectName": "E-cars",
-        "projectPath": "C:\\C#\\E-Cars\\E-cars\\E-cars.csproj",
-        "packagesPath": "C:\\Users\\Stanislav\\.nuget\\packages\\",
-        "outputPath": "C:\\C#\\E-Cars\\E-cars\\obj\\",
+        "projectPath": "/Users/skasurov/IdeaProjects/E-cars/E-cars/E-cars.csproj",
+        "packagesPath": "/Users/skasurov/.nuget/packages/",
+        "outputPath": "/Users/skasurov/IdeaProjects/E-cars/E-cars/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Stanislav\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/skasurov/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +36,13 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[1.2.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -55,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.101/RuntimeIdentifierGraph.json"
         }
       }
     }

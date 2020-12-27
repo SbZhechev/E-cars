@@ -13,10 +13,10 @@
                     Избери марка
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" asp-controller="Catalogue" asp-action="Brand" asp-route-brand="Audi">Audi</a>
-                    <a class="dropdown-item" asp-controller="Catalogue" asp-action="Brand" asp-route-brand="BMW">BMW</a>
-                    <a class="dropdown-item" asp-controller="Catalogue" asp-action="Brand" asp-route-brand="Lada">Lada</a>
-                    <a class="dropdown-item" asp-controller="Catalogue" asp-action="Brand" asp-route-brand="Kia">Kia</a>
+                    @foreach (var brand in ViewBag.brands)
+                    {
+                      <a class="dropdown-item" asp-controller="Catalogue" asp-action="Brand" asp-route-brand="@brand">@brand</a>
+                    }
                 </div>
             </div>
             <div class="dropdown ml-3">
@@ -24,10 +24,10 @@
                     Избери модел
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">RS8</a>
-                    <a class="dropdown-item" href="#">X7</a>
-                    <a class="dropdown-item" href="#">Niva</a>
-                    <a class="dropdown-item" href="#">CLS 500</a>
+                    @foreach (var carModel in ViewBag.carModels)
+                    {
+                        <a class="dropdown-item" asp-controller="Catalogue" asp-action="Brand" asp-route-model="@carModel">@carModel</a>
+                    }
                 </div>
             </div>
         </header>

@@ -16,6 +16,20 @@ namespace E_cars.Controllers
 
             List<Car> cars = await catalogueRepository.GetAllAsync();
 
+            List<string> brands = await catalogueRepository.GetAllBrandsAsync();
+            List<string> models = await catalogueRepository.GetAllModelsAsync();
+
+            List<Car> carsnull = await catalogueRepository.GetAllCarsForFilters(null);
+
+            CarFilter carFilter = new CarFilter();
+            carFilter.Brand = "BMW";
+            List<Car> carWithFilters = await catalogueRepository.GetAllCarsForFilters(carFilter);
+
+
+            CarFilter carFilterModel = new CarFilter();
+            carFilter.Model = "asd";
+            List<Car> carWithFiltersModel = await catalogueRepository.GetAllCarsForFilters(carFilterModel);
+
             return View(cars);
         }
 

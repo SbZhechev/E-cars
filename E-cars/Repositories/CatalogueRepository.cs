@@ -97,6 +97,32 @@ namespace E_cars.Controllers
             return result;
         }
 
+        //search cars for filter
+        public async System.Threading.Tasks.Task<List<Car>> SearchCarForFilterAsync(string filter)
+        {
+            if (filter == null)
+            {
+                return new List<Car>();
+            }
+            await connection.OpenAsync();
+
+            using var command = new MySqlCommand(BASE_QUERY + " WHERE brand LIKE @filterOne OR model LIKE @filterTwo OR production_year LIKE @filterThree ;", connection);
+            command.Parameters.AddWithValue("@filterOne", "%" + filter + "%");
+            command.Parameters.AddWithValue("@filterTwo", "%" + filter + "%");
+            command.Parameters.AddWithValue("@filterThree", "%" + filter + "%");
+
+            using var reader = await command.ExecuteReaderAsync();
+
+            List<Car> result = new List<Car>();
+            while (await reader.ReadAsync())
+            {
+                result.Add(BuildCarEntity(reader));
+            }
+            await connection.CloseAsync();
+
+            return result;
+        }
+
         //select all cars for the selected filters
         public async System.Threading.Tasks.Task<List<Car>> GetAllCarsForFilters(CarFilter filter)
         {
@@ -111,8 +137,6 @@ namespace E_cars.Controllers
                 command.Parameters.AddWithValue("@brand", filter.Brand);
                 command.Parameters.AddWithValue("@model", filter.Model);
             }
-
-
 
             using var reader = await command.ExecuteReaderAsync();
 

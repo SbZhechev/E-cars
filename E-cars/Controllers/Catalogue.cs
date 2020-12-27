@@ -4,20 +4,23 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 using static E_cars.Controllers.DBManipulator;
 using E_cars.Models;
+using E_cars.Services;
 
 namespace E_cars.Controllers
 {
     public class Catalogue : Controller
     {
         CatalogueRepository catalogueRepository = new CatalogueRepository();
+        CatalogueService catalogueService = new CatalogueService();
 
         public async Task<IActionResult> IndexAsync()
         {
 
-            List<Car> cars = await catalogueRepository.GetAllAsync();
+            List<Car> cars = await catalogueService.SearchCarsAsync("LADA VOLVO");
 
             List<string> brands = await catalogueRepository.GetAllBrandsAsync();
             List<string> models = await catalogueRepository.GetAllModelsAsync();
+
             ViewBag.brands = brands;
             ViewBag.carModels = models;
 

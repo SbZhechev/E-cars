@@ -10,7 +10,7 @@ namespace E_cars.Controllers
     public class Catalogue : Controller
     {
         CatalogueRepository catalogueRepository = new CatalogueRepository();
-
+        string searchString = "";
         public async Task<IActionResult> IndexAsync()
         {
 
@@ -49,5 +49,10 @@ namespace E_cars.Controllers
             return View(carWithFilters);
         }
 
+        public IActionResult Search(string searchString)
+        {
+            ViewBag.searchString = searchString;
+            return View();
+        }
     }
 }

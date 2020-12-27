@@ -52,5 +52,10 @@ namespace E_cars.Controllers
             return View(carWithFilters);
         }
 
+        public IActionResult Search(string searchString)
+        {
+            ViewBag.searchString = searchString;
+            return View();
+        }
     }
 }

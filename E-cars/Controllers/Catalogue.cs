@@ -21,25 +21,30 @@ namespace E_cars.Controllers
             ViewBag.brands = brands;
             ViewBag.carModels = models;
 
-            List<Car> carsnull = await catalogueRepository.GetAllCarsForFilters(null);
-
             return View(cars);
         }
 
         public async Task<IActionResult> Brand(string brand, string model)
         {
             List<string> brands = await catalogueRepository.GetAllBrandsAsync();
-            List<string> models = await catalogueRepository.GetAllModelsAsync();
             ViewBag.brands = brands;
-            ViewBag.carModels = models;
 
             ViewBag.selectedModel = model != null ? model : "Изберете модел";
             ViewBag.selectedBrand = brand != null ? brand : "Изберете марка";
-
             CarFilter carFilter = new CarFilter();
             carFilter.Brand = brand;
             carFilter.Model = model;
             List<Car> carWithFilters = await catalogueRepository.GetAllCarsForFilters(carFilter);
+
+            if (brand != null)
+            {
+                List<string> models = await catalogueRepository.GetAllModelsForBrandAsync(brand);
+                ViewBag.carModels = models;
+            } else
+            {
+                List<string> models = await catalogueRepository.GetAllModelsAsync();
+                ViewBag.carModels = models;
+            }
 
             return View(carWithFilters);
         }

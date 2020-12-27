@@ -33,6 +33,32 @@ namespace E_cars.Controllers
             return result;
         }
 
+
+        //select models distinct for brand
+        public async System.Threading.Tasks.Task<List<string>> GetAllModelsForBrandAsync(string brand)
+        {
+            if (brand == null)
+            {
+                return new List<string>();
+            }
+
+            await connection.OpenAsync();
+
+            using var command = new MySqlCommand("SELECT DISTINCT model FROM cars WHERE brand = @brand", connection);
+            command.Parameters.AddWithValue("@brand", brand);
+
+            using var reader = await command.ExecuteReaderAsync();
+
+            List<string> result = new List<string>();
+            while (await reader.ReadAsync())
+            {
+                result.Add(reader.GetString(0));
+            }
+            await connection.CloseAsync();
+
+            return result;
+        }
+
         //select brands distinct
         public async System.Threading.Tasks.Task<List<string>> GetAllBrandsAsync()
         {

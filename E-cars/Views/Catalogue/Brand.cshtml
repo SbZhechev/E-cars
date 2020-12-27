@@ -1,5 +1,54 @@
-﻿@{
+﻿@model IEnumerable<E_cars.Models.Car>
+
+@{
     ViewData["Title"] = $"Каталог - {@ViewBag.selectedBrand}";
 }
 
-<h1>Selected brand is: @ViewBag.selectedBrand</h1>
+<div>
+    <main>
+        <header class="d-flex align-items-center mb-5">
+            <h1>Каталог</h1>
+            <div class="dropdown ml-auto">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @ViewBag.selectedBrand
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @foreach (var brand in ViewBag.brands)
+                    {
+                        <a class="dropdown-item" asp-controller="Catalogue" asp-action="Brand" asp-route-brand="@brand">@brand</a>
+                    }
+                </div>
+            </div>
+            <div class="dropdown ml-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @ViewBag.selectedModel
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @foreach (var carModel in ViewBag.carModels)
+                    {
+                        <a class="dropdown-item" asp-controller="Catalogue" asp-action="Brand" asp-route-brand="@ViewBag.selectedBrand" asp-route-model="@carModel">@carModel</a>
+                    }
+                </div>
+            </div>
+        </header>
+        <div class="d-flex flex-wrap">
+            @foreach (var car in Model)
+            {
+                <div class="card d-inline-block m-1" style="width: 18rem;">
+                    <img class="card-img-top" src="@car.Picture" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Производител: @car.Brand</h5>
+                        <p class="card-text">Модел: @car.Model</p>
+                        <p class="card-text">Година на производство: @car.Production_Year</p>
+                        <p class="card-text">Километраж: @car.Mileage</p>
+                        <p class="card-text">Цена: @car.Price лева</p>
+                        <div class="btn-group d-flex" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-secondary">Разгледай</button>
+                            <button type="button" class="btn btn-primary">Купи</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </main>
+</div>

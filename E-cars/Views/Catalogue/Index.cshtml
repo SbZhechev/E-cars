@@ -8,15 +8,21 @@
     <main>
         <header class="d-flex align-items-center mb-5">
             <h1>Каталог</h1>
-            <div class="dropdown ml-auto">
+            <div class="input-group w-25 ml-auto">
+                <input type="text" class="form-control" placeholder="Търси в каталога" aria-label="Търси в каталога" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary d-flex align-items-center" type="button" id="button-addon2"><i class="bi bi-search mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+</svg></i>Търси</button>
+            </div>
+            <div class="dropdown ml-3">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Избери марка
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" asp-controller="Catalogue" asp-action="Brand" asp-route-brand="Audi">Audi</a>
-                    <a class="dropdown-item" asp-controller="Catalogue" asp-action="Brand" asp-route-brand="BMW">BMW</a>
-                    <a class="dropdown-item" asp-controller="Catalogue" asp-action="Brand" asp-route-brand="Lada">Lada</a>
-                    <a class="dropdown-item" asp-controller="Catalogue" asp-action="Brand" asp-route-brand="Kia">Kia</a>
+                    @foreach (var brand in ViewBag.brands)
+                    {
+                        <a class="dropdown-item" asp-controller="Catalogue" asp-action="Brand" asp-route-brand="@brand">@brand</a>
+                    }
                 </div>
             </div>
             <div class="dropdown ml-3">
@@ -24,10 +30,10 @@
                     Избери модел
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">RS8</a>
-                    <a class="dropdown-item" href="#">X7</a>
-                    <a class="dropdown-item" href="#">Niva</a>
-                    <a class="dropdown-item" href="#">CLS 500</a>
+                    @foreach (var carModel in ViewBag.carModels)
+                    {
+                        <a class="dropdown-item" asp-controller="Catalogue" asp-action="Brand" asp-route-model="@carModel">@carModel</a>
+                    }
                 </div>
             </div>
         </header>

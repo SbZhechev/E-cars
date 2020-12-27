@@ -18,25 +18,36 @@ namespace E_cars.Controllers
 
             List<string> brands = await catalogueRepository.GetAllBrandsAsync();
             List<string> models = await catalogueRepository.GetAllModelsAsync();
-
-            List<Car> carsnull = await catalogueRepository.GetAllCarsForFilters(null);
-
-            CarFilter carFilter = new CarFilter();
-            carFilter.Brand = "BMW";
-            List<Car> carWithFilters = await catalogueRepository.GetAllCarsForFilters(carFilter);
-
-
-            CarFilter carFilterModel = new CarFilter();
-            carFilter.Model = "asd";
-            List<Car> carWithFiltersModel = await catalogueRepository.GetAllCarsForFilters(carFilterModel);
+            ViewBag.brands = brands;
+            ViewBag.carModels = models;
 
             return View(cars);
         }
 
-        public IActionResult Brand(string brand)
+        public async Task<IActionResult> Brand(string brand, string model)
         {
-            ViewBag.selectedBrand = brand;
-            return View();
+            List<string> brands = await catalogueRepository.GetAllBrandsAsync();
+            ViewBag.brands = brands;
+
+            ViewBag.selectedModel = model != null ? model : "Изберете модел";
+            ViewBag.selectedBrand = brand != null ? brand : "Изберете марка";
+            CarFilter carFilter = new CarFilter();
+            carFilter.Brand = brand;
+            carFilter.Model = model;
+            List<Car> carWithFilters = await catalogueRepository.GetAllCarsForFilters(carFilter);
+
+            if (brand != null)
+            {
+                List<string> models = await catalogueRepository.GetAllModelsForBrandAsync(brand);
+                ViewBag.carModels = models;
+            } else
+            {
+                List<string> models = await catalogueRepository.GetAllModelsAsync();
+                ViewBag.carModels = models;
+            }
+
+            return View(carWithFilters);
         }
+
     }
 }

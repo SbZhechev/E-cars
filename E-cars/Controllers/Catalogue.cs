@@ -15,8 +15,7 @@ namespace E_cars.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-
-            List<Car> cars = await catalogueService.SearchCarsAsync("LADA VOLVO");
+            List<Car> cars = await catalogueRepository.GetAllAsync();
 
             List<string> brands = await catalogueRepository.GetAllBrandsAsync();
             List<string> models = await catalogueRepository.GetAllModelsAsync();
@@ -52,5 +51,10 @@ namespace E_cars.Controllers
             return View(carWithFilters);
         }
 
+        public async Task<IActionResult> Search(string searchString)
+        {
+            List<Car> cars = await catalogueService.SearchCarsAsync(searchString);
+            return View(cars);
+        }
     }
 }
